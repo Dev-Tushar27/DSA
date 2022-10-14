@@ -35,7 +35,7 @@ public class LL {
         System.out.println(temp.data);
     }
     public static void deleteNode(int n) {
-        if (head == null) {
+        if (head.data == n) {
             head = head.next;
             return;
         }
@@ -45,33 +45,21 @@ public class LL {
         }
         temp.next = temp.next.next;
     }
-    public static void insert(int prev,int val){
+    public static void insert(int pos,int val){
         Node newNode = new Node(val);
-        if(prev == head.data){
-            newNode.next = head.next;
-            head.next = newNode;
+        if(pos == 0){
+            newNode.next = head;
+            head = newNode;
             return;
         }
         Node temp = head;
-        while(temp.next.data != prev){
+        int i = 0;
+        do{
+            i++;
             temp = temp.next;
-        }
-        Node prevNode = temp.next;
-        prevNode.next = newNode;
-        newNode.next = temp.next.next;
+        }while(i != pos);
+        newNode.next = temp.next;
+        temp.next = newNode;
     }
-    public static void main(String[] args) {
-        add(1);
-        add(2);
-        add(3);
-        add(4);
-        add(5);
-        printList();
-        deleteNode(4);
-        printList();
-        insert(3,7);
-        printList();
-    }
-
 
 }
