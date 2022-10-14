@@ -1,0 +1,37 @@
+package array;
+public class quickSort {
+    public static int partition(int [] arr, int start, int end){
+        int pivot =  arr[end];
+        int i = start -1;
+        for(int j = start; j< end; j++){
+            if(arr[j]< pivot){
+                i++;
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+        i++;
+        int temp = arr[i];
+        arr[i] = arr[end];
+        arr[end] = temp;
+
+        return i;
+    }
+    public static void sort(int [] arr, int start, int end){
+        if(start< end){
+            int pivot = partition(arr, start, end);
+            sort(arr, start, pivot-1);
+            sort(arr, pivot+1, end);
+        }
+    }
+    public static void main(String [] args) {
+        int [] arr = {6,2,9,8,5,7};
+        sort(arr, 0, arr.length-1);
+
+        System.out.println("Sorted Array:");
+        for (int j : arr) {
+            System.out.print(j + " ");
+        }
+    }
+}
